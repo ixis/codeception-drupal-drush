@@ -1,0 +1,18 @@
+{
+  "name": "ixisandyr/codeception-module-drupal-drush",
+  "description": "A Codeception module to allow drush commands to be run during tests.",
+  "authors": [
+    {
+      "name": "Andy Rigby",
+      "email": "andy.rigby@ixis.co.uk"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Codeception\\Module\\": "src/"
+    }
+  },
+  "requires": {
+    "codeception/codeception": "2.0.*"
+  }
+}
