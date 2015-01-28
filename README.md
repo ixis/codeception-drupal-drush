@@ -9,7 +9,7 @@ It also allows the use of the following statements in tests:
 
 ```php
 // Execute "drush cc all"
-$output = $I->executeDrushCommand("cc", array("all"));
+$I->getDrush("cc", array("all"))->mustRun();
 ```
 
 ## Install with Composer
