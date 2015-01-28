@@ -3,6 +3,7 @@
 namespace Codeception\Module;
 
 use Codeception\Module;
+use Symfony\Component\Process\ProcessBuilder;
 
 class DrupalDrush extends Module {
     /**
@@ -23,52 +24,52 @@ class DrupalDrush extends Module {
      * @param array $options
      *   Array of options in key => value format.
      *   e.g. array("help" => null, "v" => null, "uid" => "2,3".
+     * @param string $drush
+     *   The drush command to use.
+     * @param int $return_val
+     *   The drush exit code.
      *
      * @return string
      *   Output from the drush command.
      */
-    public function executeDrushCommand($command, array $arguments, $options = array(), $drush = 'drush', $return_var = 0)
+    public function executeDrushCommand($command, array $arguments, $options = array(), $drush = 'drush', &$return_val = 0)
     {
-        $command_args = array($command);
-        foreach ($arguments as $arg) {
-            $command_args[] = $arg;
-        }
+        $command_args = array($drush, $command) + $arguments;
+        $b = new ProcessBuilder($command_args);
+
         foreach ($options as $opt => $value) {
             if (!isset($value)) {
                 if (strlen($opt) == 1) {
-                    $command_args[] = "-$opt";
+                    $b->add("-$opt");
                 } else {
-                    $command_args[] = "--$opt";
+                    $b->add("--$opt");
                 }
             } else {
                 if (strlen($opt) == 1) {
-                    $command_args[] = sprintf(
-                        "-%s %s",
-                        $opt,
-                        escapeshellarg($value)
+                    $b->add(
+                        sprintf(
+                            "-%s %s",
+                            $opt,
+                            $value
+                        )
                     );
                 } else {
-                    $command_args[] = sprintf(
-                        "--%s=%s",
-                        $opt,
-                        escapeshellarg($value)
+                    $b->add(
+                        sprintf(
+                            "--%s=%s",
+                            $opt,
+                            $value
+                        )
                     );
                 }
             }
         }
 
-        $command = sprintf(
-            "%s -y %s %s",
-            escapeshellcmd($drush),
-            $this->config['drush-alias'],
-            implode(" ", array_map('escapeshellarg', $command_args))
-        );
+        $this->debugSection('Command', $b->getProcess()->getCommandLine());
 
-        $output = array();
-        $this->debugSection('Command', $command);
-        exec($command, $output, $return_var);
+        $return_val = $b->getProcess()->run();
 
-        $this->assertEquals(0, $return_var, "$command exited with code $return_var");
-        return $output;
+        $this->assertEquals(0, $return_val, "$command exited with code $return_val");
+        return $b->getProcess()->getOutput();
     }
 }
