@@ -34,7 +34,8 @@ class DrupalDrush extends Module {
      */
     public function executeDrushCommand($command, array $arguments, $options = array(), $drush = 'drush', &$return_val = 0)
     {
-        $command_args = array($drush, $command) + $arguments;
+        $args = array($drush, $this->config['drush-alias'], "-y", $command);
+        $command_args = array_merge($args, $arguments);
         $b = new ProcessBuilder($command_args);
 
         foreach ($options as $opt => $value) {
@@ -66,10 +67,8 @@ class DrupalDrush extends Module {
         }
 
         $this->debugSection('Command', $b->getProcess()->getCommandLine());
-
-        $return_val = $b->getProcess()->run();
-
-        $this->assertEquals(0, $return_val, "$command exited with code $return_val");
-        return $b->getProcess()->getOutput();
+        $proc = $b->getProcess();
+        $return_val = $proc->mustRun();
+        return $proc->getOutput();
     }
 }
