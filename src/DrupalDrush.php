@@ -3,6 +3,7 @@
 namespace Codeception\Module;
 
 use Codeception\Module;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 
 class DrupalDrush extends Module {
@@ -26,13 +27,11 @@ class DrupalDrush extends Module {
      *   e.g. array("help" => null, "v" => null, "uid" => "2,3".
      * @param string $drush
      *   The drush command to use.
-     * @param int $return_val
-     *   The drush exit code.
      *
-     * @return string
-     *   Output from the drush command.
+     * @return Process
+     *   a symfony/process instance to execute.
      */
-    public function executeDrushCommand($command, array $arguments, $options = array(), $drush = 'drush', &$return_val = 0)
+    public function getDrush($command, array $arguments, $options = array(), $drush = 'drush')
     {
         $args = array($drush, $this->config['drush-alias'], "-y", $command);
         $command_args = array_merge($args, $arguments);
@@ -67,8 +66,6 @@ class DrupalDrush extends Module {
         }
 
         $this->debugSection('Command', $b->getProcess()->getCommandLine());
-        $proc = $b->getProcess();
-        $return_val = $proc->mustRun();
-        return $proc->getOutput();
+        return $b->getProcess();
     }
 }

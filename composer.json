@@ -1,19 +1,24 @@
 {
-  "name": "ixisandyr/codeception-module-drupal-drush",
-  "description": "A Codeception module to allow drush commands to be run during tests.",
-  "authors": [
-    {
-      "name": "Andy Rigby",
-      "email": "andy.rigby@ixis.co.uk"
+    "name": "ixisandyr/codeception-module-drupal-drush",
+    "description": "A Codeception module to allow drush commands to be run during tests.",
+    "authors": [
+        {
+            "name": "Andy Rigby",
+            "email": "andy.rigby@ixis.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Codeception\\Module\\": "src/"
+        }
+    },
+    "require": {
+        "codeception/codeception": "2.0.*",
+        "symfony/process": "2.6.*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Codeception\\Module\\": "src/"
-    }
-  },
-  "require": {
-    "codeception/codeception": "2.0.*",
-    "symfony/process": "2.6.*"
-  }
 }
