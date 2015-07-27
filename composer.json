@@ -1,5 +1,5 @@
 {
-    "name": "ixisandyr/codeception-module-drupal-drush",
+    "name": "ixis/codeception-module-drupal-drush",
     "description": "A Codeception module to allow drush commands to be run during tests.",
     "authors": [
         {

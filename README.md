@@ -19,12 +19,12 @@ $I->getDrush("cc", array("all"))->mustRun();
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@bitbucket.org:dopey/codeception-drupal-drush.git"
+            "url": "git@github.com:ixis/codeception-drupal-drush.git"
         }
     ],
     "require": {
         "codeception/codeception": "2.0.*",
-        "ixisandyr/codeception-module-drupal-drush": "@dev"
+        "ixis/codeception-module-drupal-drush": "@dev"
     }
 }
 ```
