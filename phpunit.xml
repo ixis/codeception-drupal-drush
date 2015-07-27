@@ -1,0 +1,7 @@
+<phpunit>
+    <testsuites>
+        <testsuite name="codeception-drupal-drush">
+            <directory>tests/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
