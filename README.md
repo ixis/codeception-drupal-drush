@@ -24,7 +24,7 @@ $I->getDrush("cc", array("all"))->mustRun();
     ],
     "require": {
         "codeception/codeception": "2.0.*",
-        "ixis/codeception-module-drupal-drush": "@dev"
+        "ixis/codeception-drupal-drush": "@dev"
     }
 }
 ```
