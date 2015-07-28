@@ -52,6 +52,17 @@ class DrupalDrushTest extends \PHPUnit_Framework_TestCase
         $this->assertContains("'--user=123'", $process->getCommandLine());
     }
 
+    public function testOptionsWithNoValue()
+    {
+        $process = $this->drush->getDrush("cc", array(), array("u" => null));
+        $this->assertContains("'-u'", $process->getCommandLine());
+        $this->assertNotContains("'-u null'", $process->getCommandLine());
+
+        $process = $this->drush->getDrush("cc", array(), array("user" => null));
+        $this->assertContains("'--user'", $process->getCommandLine());
+        $this->assertNotContains("'--user=null'", $process->getCommandLine());
+    }
+
     public function testAlias()
     {
         $process = $this->drush->getDrush("cc", array('all'));
