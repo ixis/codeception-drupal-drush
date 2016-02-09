@@ -1,6 +1,8 @@
 {
     "name": "ixis/codeception-drupal-drush",
     "description": "A Codeception module to allow drush commands to be run during tests.",
+    "homepage": "https://github.com/ixis/codeception-drupal-drush",
+    "license": "MIT",
     "authors": [
         {
             "name": "Andy Rigby",
@@ -13,11 +15,11 @@
         }
     },
     "require": {
-        "codeception/codeception": "2.0.*",
-        "symfony/process": "2.6.*"
+        "codeception/codeception": "~2.0.0",
+        "symfony/process": "~2.6"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.7.*"
+        "phpunit/phpunit": "~4.7"
     },
     "extra": {
         "branch-alias": {
