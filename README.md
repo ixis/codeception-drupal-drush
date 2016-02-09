@@ -16,20 +16,14 @@ $I->getDrush("cc", array("all"))->mustRun();
 
 ```json
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:ixis/codeception-drupal-drush.git"
-        }
-    ],
     "require": {
-        "codeception/codeception": "2.0.*",
-        "ixis/codeception-drupal-drush": "@dev"
+        "codeception/codeception": "~2.0.0",
+        "ixis/codeception-drupal-drush": "dev-develop"
     }
 }
 ```
 
-Drupal Drush minimally requires Codeception 2.0 and PHP 5.4
+Drupal Drush minimally requires Codeception 2.0.* and PHP 5.4
 
 ## Example suite configuration
 
