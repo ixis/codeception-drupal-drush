@@ -18,7 +18,7 @@ $I->getDrush("cc", array("all"))->mustRun();
 {
     "require": {
         "codeception/codeception": "~2.0.0",
-        "ixis/codeception-drupal-drush": "dev-develop"
+        "ixis/codeception-drupal-drush": "~0.1"
     }
 }
 ```
